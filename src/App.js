@@ -70,7 +70,7 @@ class App extends React.Component {
         {status === 'idle' && <div>Enter a search name</div>}
         {status === 'pending' && (
           <Loader
-            type="Grid"
+            type="BallTriangle"
             color="#00BFFF"
             height={100}
             width={100}
