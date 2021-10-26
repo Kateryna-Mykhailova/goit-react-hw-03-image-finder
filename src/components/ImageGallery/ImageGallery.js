@@ -1,17 +1,24 @@
-// import React from 'react';
+import React from 'react';
 
-// import '../ImageGallery/ImageGallery.module.css';
+import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
-// const ImageGallery = ( images ) => {
-//    return (
-//     <ul >
-//       {images.map(image => {
-//         return (
-//           <p>{image.id} </p>
-//         );
-//       })}
-//     </ul>
-//   );
-// };
+const ImageGallery = ({ images }) => {
+  return (
+    <ul>
+      {/* <li>jhgf</li> */}
+      {images.map(image => {
+        return (
+          // <div><p>{image.id} </p>
+          <ImageGalleryItem
+            key={image.id}
+            src={image.webformatURL}
+            largeImg={image.largeImageURL}
+          />
+          //   </div>
+        );
+      })}
+    </ul>
+  );
+};
 
-// export default ImageGallery;
+export default ImageGallery;

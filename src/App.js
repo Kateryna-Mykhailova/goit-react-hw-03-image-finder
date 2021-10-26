@@ -6,6 +6,7 @@ import Searchbar from './components/Searchbar/Searchbar';
 import Loader from 'react-loader-spinner';
 import searchApi from './services/api';
 import ImageGallery from './components/ImageGallery/ImageGallery';
+// import ImageGalleryItem from './components/ImageGalleryItem/ImageGalleryItem'
 
 let searchPage = 1;
 
@@ -34,10 +35,10 @@ class App extends React.Component {
 
       searchApi
         .fetchImage(this.state.searchName, searchPage)
-        .then(searchInfo =>
-          //        console.log(searchInfo))
-          this.setState({ searchInfo, status: 'resolved' }),
-        )
+        .then(searchInfo => {
+          console.log(searchInfo.hits);
+          this.setState({ searchInfo: searchInfo.hits, status: 'resolved' });
+        })
         .catch(error => this.setState({ error, status: 'rejected' }));
 
       // fetch(`https://pixabay.com/api/?q=${this.state.searchName}&page=${searchPage}&key=23204413-d213403835507960634485f04&image_type=photo&orientation=horizontal&per_page=12`)
@@ -84,7 +85,7 @@ class App extends React.Component {
         {status === 'resolved' && (
           <>
             <p>{searchInfo.total}</p>
-            {/* <ImageGallery images={searchInfo}/> */}
+            <ImageGallery images={searchInfo} />
           </>
         )}
       </div>
