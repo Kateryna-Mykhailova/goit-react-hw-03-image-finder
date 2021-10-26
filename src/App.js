@@ -5,6 +5,7 @@ import './App.css';
 import Searchbar from './components/Searchbar/Searchbar';
 import Loader from 'react-loader-spinner';
 import searchApi from './services/api';
+import ImageGallery from './components/ImageGallery/ImageGallery';
 
 let searchPage = 1;
 
@@ -78,7 +79,12 @@ class App extends React.Component {
           />
         )}
         {status === 'rejected' && <h1>{error.message}</h1>}
-        {status === 'resolved' && <p>{searchInfo.total}</p>}
+        {status === 'resolved' && (
+          <>
+            <p>{searchInfo.total}</p>
+            <ImageGallery />
+          </>
+        )}
       </div>
 
       // return (
