@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Searchbar from './components/Searchbar/Searchbar';
+import Loader from 'react-loader-spinner';
 import searchApi from './services/api';
 
 let searchPage = 1;
@@ -59,11 +60,32 @@ class App extends React.Component {
   };
 
   render() {
+    const { searchInfo, error, status } = this.state;
     return (
       <div className="App">
         <Searchbar onSubmit={this.handleFormSubmit} />
+
+        {/* <ImageGalleryItem searchName={ this.state.searchName}/> */}
         <ToastContainer position="top-center" autoClose={2000} />
+        {status === 'idle' && <div>Enter a search name</div>}
+        {status === 'pending' && (
+          <Loader
+            type="Grid"
+            color="#00BFFF"
+            height={100}
+            width={100}
+            timeout={3000}
+          />
+        )}
+        {status === 'rejected' && <h1>{error.message}</h1>}
+        {status === 'resolved' && <p>{searchInfo.total}</p>}
       </div>
+
+      // return (
+      //   <div className="App">
+      //     <Searchbar onSubmit={this.handleFormSubmit} />
+      //     <ToastContainer position="top-center" autoClose={2000} />
+      //   </div>
     );
   }
 }
