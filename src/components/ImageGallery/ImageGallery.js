@@ -1,16 +1,17 @@
-import React from 'react';
+// import React from 'react';
 
-import '../ImageGallery/ImageGallery.module.css';
+// import '../ImageGallery/ImageGallery.module.css';
 
-const ImageGallery = ({ searchInfo }) => {
-  // searchInfo.map(el => {return el})
-  return (
-    <ul className="ImageGallery">
-      {/* {searchInfo.map(el => console.log(el))} */}
+// const ImageGallery = ( images ) => {
+//    return (
+//     <ul >
+//       {images.map(image => {
+//         return (
+//           <p>{image.id} </p>
+//         );
+//       })}
+//     </ul>
+//   );
+// };
 
-      <li>dfgh</li>
-    </ul>
-  );
-};
-
-export default ImageGallery;
+// export default ImageGallery;

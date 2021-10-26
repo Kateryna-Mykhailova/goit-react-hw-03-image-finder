@@ -23,6 +23,7 @@ class App extends React.Component {
     searchInfo: null,
     error: null,
     status: 'idle',
+    // images: [],
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -62,6 +63,7 @@ class App extends React.Component {
 
   render() {
     const { searchInfo, error, status } = this.state;
+
     return (
       <div className="App">
         <Searchbar onSubmit={this.handleFormSubmit} />
@@ -82,7 +84,7 @@ class App extends React.Component {
         {status === 'resolved' && (
           <>
             <p>{searchInfo.total}</p>
-            <ImageGallery />
+            {/* <ImageGallery images={searchInfo}/> */}
           </>
         )}
       </div>
