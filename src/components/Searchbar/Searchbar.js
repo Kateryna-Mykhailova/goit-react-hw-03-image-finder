@@ -2,7 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { toast } from 'react-toastify';
-import '../Searchbar/Searchbar.module.css';
+import styles from '../Searchbar/Searchbar.module.css';
 
 export default class Searchbar extends Component {
   state = {
@@ -44,15 +44,15 @@ export default class Searchbar extends Component {
 
   render() {
     return (
-      <header className="Searchbar">
-        <form onSubmit={this.handleSubmit} className="SearchForm">
-          <button type="submit" className="SearchForm-button">
+      <header className={styles.Searchbar}>
+        <form onSubmit={this.handleSubmit} className={styles.SearchForm}>
+          <button type="submit" className={styles.SearchForm_button}>
             <AiOutlineSearch />
-            <span className="SearchForm-button-label">Search</span>
+            <span className={styles.SearchFormButton_label}>Search</span>
           </button>
 
           <input
-            className="SearchForm-input"
+            className={styles.SearchForm_input}
             type="text"
             autoComplete="off"
             autoFocus

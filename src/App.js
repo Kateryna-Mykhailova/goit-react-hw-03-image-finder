@@ -32,14 +32,15 @@ class App extends React.Component {
       console.log('change name');
 
       this.setState({ status: 'pending' });
+      this.fetchFunction();
 
-      searchApi
-        .fetchImage(this.state.searchName, searchPage)
-        .then(searchInfo => {
-          console.log(searchInfo.hits);
-          this.setState({ searchInfo: searchInfo.hits, status: 'resolved' });
-        })
-        .catch(error => this.setState({ error, status: 'rejected' }));
+      // searchApi
+      //   .fetchImage(this.state.searchName, searchPage)
+      //   .then(searchInfo => {
+      //     console.log(searchInfo.hits);
+      //     this.setState({ searchInfo: searchInfo.hits, status: 'resolved' });
+      //   })
+      //   .catch(error => this.setState({ error, status: 'rejected' }));
 
       // fetch(`https://pixabay.com/api/?q=${this.state.searchName}&page=${searchPage}&key=23204413-d213403835507960634485f04&image_type=photo&orientation=horizontal&per_page=12`)
       //            .then(response => {
@@ -60,6 +61,16 @@ class App extends React.Component {
 
   handleFormSubmit = searchName => {
     this.setState({ searchName });
+  };
+
+  fetchFunction = () => {
+    return searchApi
+      .fetchImage(this.state.searchName, searchPage)
+      .then(searchInfo => {
+        console.log(searchInfo.hits);
+        this.setState({ searchInfo: searchInfo.hits, status: 'resolved' });
+      })
+      .catch(error => this.setState({ error, status: 'rejected' }));
   };
 
   render() {
