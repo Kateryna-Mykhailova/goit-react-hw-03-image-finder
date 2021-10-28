@@ -68,45 +68,6 @@ class App extends React.Component {
       .catch(error => this.setState({ error, status: 'rejected' }));
   };
 
-  //   fetchOFunction = () => {
-  //     return searchApi
-  //       .fetchImage(this.state.searchName, this.state.searchPage)
-  //       .then(searchInfo => {
-  //         // console.log(searchInfo.hits);
-  //         // console.log(this.state.searchInfo);
-  //         console.log(this.state.searchPage);
-  //         // this.setState({ searchInfo: searchInfo.hits, status: 'resolved' });
-  //         this.setState({ searchInfo: [...this.state.searchInfo, ...searchInfo.hits], status: 'resolved' })
-  //             this.setState(prevState => ({
-
-  //       searchPage: prevState.searchPage + 1,
-
-  //     }))
-  //     //  co
-  //         // this.setState(prevState => ({searchInfo: [...prevState.searchInfo, searchInfo.hits], status: 'resolved'}))
-  //       })
-  //       .catch(error => this.setState({ error, status: 'rejected' })
-  //     );
-
-  //   };
-
-  // fetchTFunction = () => {
-  //     return searchApi
-  //       .fetchImage(this.state.searchName, this.state.searchPage)
-  //       .then(searchInfo => {
-  //         // console.log(searchInfo.hits);
-  //         // console.log(this.state.searchInfo);
-  //         console.log(this.state.searchPage);
-  //         this.setState({ searchInfo: searchInfo.hits, status: 'resolved' });
-
-  //         //  this.setState({searchInfo: [...this.state.searchInfo, ...searchInfo.hits], status: 'resolved' })
-  //         // this.setState(prevState => ({searchInfo: [...prevState.searchInfo, searchInfo.hits], status: 'resolved', searchPage: prevState.searchPage + 1 }))
-  //       })
-  //       .catch(error => this.setState({ error, status: 'rejected' })
-  //     );
-
-  //   };
-
   render() {
     const { searchInfo, error, status } = this.state;
 
