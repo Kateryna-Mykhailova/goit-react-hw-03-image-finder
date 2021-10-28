@@ -1,14 +1,14 @@
+import './App.css';
+import styles from './App.css';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './App.css';
+
 import Searchbar from './components/Searchbar/Searchbar';
 import Loader from 'react-loader-spinner';
 import searchApi from './services/api';
 import ImageGallery from './components/ImageGallery/ImageGallery';
-// import ImageGalleryItem from './components/ImageGalleryItem/ImageGalleryItem'
-
-let searchPage = 1;
+import Button from './components/Button/Button';
 
 // fetch(`https://pixabay.com/api/?q=sun&page=1&key=23204413-d213403835507960634485f04&image_type=photo&orientation=horizontal&per_page=12`)
 //                  .then(res =>      console.log(res.json()))
@@ -20,41 +20,20 @@ let searchPage = 1;
 class App extends React.Component {
   state = {
     searchName: '',
-
-    searchInfo: null,
+    searchInfo: [],
     error: null,
     status: 'idle',
-    // images: [],
+    searchPage: 1,
   };
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchName !== this.state.searchName) {
-      console.log('change name');
-
+      // console.log('change name');
+      this.setState({ searchPage: 1 });
+      // console.log(this.state.searchPage);
       this.setState({ status: 'pending' });
+      this.setState({ searchInfo: [] });
       this.fetchFunction();
-
-      // searchApi
-      //   .fetchImage(this.state.searchName, searchPage)
-      //   .then(searchInfo => {
-      //     console.log(searchInfo.hits);
-      //     this.setState({ searchInfo: searchInfo.hits, status: 'resolved' });
-      //   })
-      //   .catch(error => this.setState({ error, status: 'rejected' }));
-
-      // fetch(`https://pixabay.com/api/?q=${this.state.searchName}&page=${searchPage}&key=23204413-d213403835507960634485f04&image_type=photo&orientation=horizontal&per_page=12`)
-      //            .then(response => {
-      //                if (response.ok) {
-      //                    return response.json()
-      //                }
-      //                return Promise.reject(new Error (`There is no information for this query ${this.state.searchName}`)
-      //               )
-      //            }
-      //                )
-      //          .then(searchInfo =>
-      //            console.log(searchInfo))
-      //           //  this.setState({ searchInfo, status: 'resolved' }))
-      //          .catch(error => this.setState({ error, status: 'rejected' }))
     }
     return;
   }
@@ -65,22 +44,37 @@ class App extends React.Component {
 
   fetchFunction = () => {
     return searchApi
-      .fetchImage(this.state.searchName, searchPage)
+      .fetchImage(this.state.searchName, this.state.searchPage)
       .then(searchInfo => {
-        console.log(searchInfo.hits);
-        this.setState({ searchInfo: searchInfo.hits, status: 'resolved' });
+        // console.log(searchInfo.hits);
+        // console.log(this.state.searchInfo);
+        console.log(this.state.searchPage);
+        // this.setState({ searchInfo: searchInfo.hits, status: 'resolved' });
+        this.setState({
+          searchInfo: [...this.state.searchInfo, ...searchInfo.hits],
+          status: 'resolved',
+        });
+        this.setState(prevState => ({ searchPage: prevState.searchPage + 1 }));
       })
       .catch(error => this.setState({ error, status: 'rejected' }));
+  };
+
+  handleClick = () => {
+    // this.setState(prevState => ({
+    //   searchPage: prevState.searchPage + 1,
+    // }))
+    //  console.log(this.state.searchInfo);
+    console.log(this.state.searchPage);
+    this.fetchFunction();
+    // this.setState(prevState => ({searchInfo: [...prevState.searchInfo, searchInfo.hits] }))
   };
 
   render() {
     const { searchInfo, error, status } = this.state;
 
     return (
-      <div className="App">
+      <div className={styles.App}>
         <Searchbar onSubmit={this.handleFormSubmit} />
-
-        {/* <ImageGalleryItem searchName={ this.state.searchName}/> */}
         <ToastContainer position="top-center" autoClose={2000} />
         {status === 'idle' && <div>Enter a search name</div>}
         {status === 'pending' && (
@@ -95,17 +89,12 @@ class App extends React.Component {
         {status === 'rejected' && <h1>{error.message}</h1>}
         {status === 'resolved' && (
           <>
-            <p>{searchInfo.total}</p>
+            {/* <p>{searchInfo.total}</p> */}
             <ImageGallery images={searchInfo} />
+            <Button onClick={this.handleClick} />
           </>
         )}
       </div>
-
-      // return (
-      //   <div className="App">
-      //     <Searchbar onSubmit={this.handleFormSubmit} />
-      //     <ToastContainer position="top-center" autoClose={2000} />
-      //   </div>
     );
   }
 }

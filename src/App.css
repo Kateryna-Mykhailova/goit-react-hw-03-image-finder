@@ -1,8 +1,15 @@
-.App {
+/* .App {
   display: block;
   width: 400px;
   /* text-align: center; */
-  /* margin-left: auto;
+/* margin-left: auto;
   margin-right: auto; */
-  padding: 25px;
+/* padding: 25px; */
+/* } */
+
+.App {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+  padding-bottom: 24px;
 }
