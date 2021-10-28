@@ -42,6 +42,15 @@ class App extends React.Component {
     this.setState({ searchName });
   };
 
+  handleClick = () => {
+    // this.setState(prevState => ({
+    //   searchPage: prevState.searchPage + 1,
+    // }))
+    //  console.log(this.state.searchInfo);
+    console.log(this.state.searchPage);
+    this.fetchFunction();
+    // this.setState(prevState => ({searchInfo: [...prevState.searchInfo, searchInfo.hits] }))
+  };
   fetchFunction = () => {
     return searchApi
       .fetchImage(this.state.searchName, this.state.searchPage)
@@ -59,15 +68,44 @@ class App extends React.Component {
       .catch(error => this.setState({ error, status: 'rejected' }));
   };
 
-  handleClick = () => {
-    // this.setState(prevState => ({
-    //   searchPage: prevState.searchPage + 1,
-    // }))
-    //  console.log(this.state.searchInfo);
-    console.log(this.state.searchPage);
-    this.fetchFunction();
-    // this.setState(prevState => ({searchInfo: [...prevState.searchInfo, searchInfo.hits] }))
-  };
+  //   fetchOFunction = () => {
+  //     return searchApi
+  //       .fetchImage(this.state.searchName, this.state.searchPage)
+  //       .then(searchInfo => {
+  //         // console.log(searchInfo.hits);
+  //         // console.log(this.state.searchInfo);
+  //         console.log(this.state.searchPage);
+  //         // this.setState({ searchInfo: searchInfo.hits, status: 'resolved' });
+  //         this.setState({ searchInfo: [...this.state.searchInfo, ...searchInfo.hits], status: 'resolved' })
+  //             this.setState(prevState => ({
+
+  //       searchPage: prevState.searchPage + 1,
+
+  //     }))
+  //     //  co
+  //         // this.setState(prevState => ({searchInfo: [...prevState.searchInfo, searchInfo.hits], status: 'resolved'}))
+  //       })
+  //       .catch(error => this.setState({ error, status: 'rejected' })
+  //     );
+
+  //   };
+
+  // fetchTFunction = () => {
+  //     return searchApi
+  //       .fetchImage(this.state.searchName, this.state.searchPage)
+  //       .then(searchInfo => {
+  //         // console.log(searchInfo.hits);
+  //         // console.log(this.state.searchInfo);
+  //         console.log(this.state.searchPage);
+  //         this.setState({ searchInfo: searchInfo.hits, status: 'resolved' });
+
+  //         //  this.setState({searchInfo: [...this.state.searchInfo, ...searchInfo.hits], status: 'resolved' })
+  //         // this.setState(prevState => ({searchInfo: [...prevState.searchInfo, searchInfo.hits], status: 'resolved', searchPage: prevState.searchPage + 1 }))
+  //       })
+  //       .catch(error => this.setState({ error, status: 'rejected' })
+  //     );
+
+  //   };
 
   render() {
     const { searchInfo, error, status } = this.state;
@@ -75,6 +113,8 @@ class App extends React.Component {
     return (
       <div className={styles.App}>
         <Searchbar onSubmit={this.handleFormSubmit} />
+
+        {/* <ImageGalleryItem searchName={ this.state.searchName}/> */}
         <ToastContainer position="top-center" autoClose={2000} />
         {status === 'idle' && <div>Enter a search name</div>}
         {status === 'pending' && (
@@ -95,6 +135,12 @@ class App extends React.Component {
           </>
         )}
       </div>
+
+      // return (
+      //   <div className="App">
+      //     <Searchbar onSubmit={this.handleFormSubmit} />
+      //     <ToastContainer position="top-center" autoClose={2000} />
+      //   </div>
     );
   }
 }
