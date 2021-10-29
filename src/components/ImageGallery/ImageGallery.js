@@ -11,6 +11,7 @@ const ImageGallery = ({ images, onClick }) => {
           return (
             // <div><p>{image.id} </p>
             <ImageGalleryItem
+              onClick={onClick}
               key={image.id}
               src={image.webformatURL}
               largeImg={image.largeImageURL}

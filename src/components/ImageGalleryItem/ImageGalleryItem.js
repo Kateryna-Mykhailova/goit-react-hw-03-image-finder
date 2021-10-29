@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from '../ImageGalleryItem/ImageGalleryItem.module.css';
 
-const ImageGalleryItem = ({ id, src, largeImg }) => {
+const ImageGalleryItem = ({ id, src, largeImg, onClick }) => {
   return (
-    <li className={styles.ImageGalleryItem} key={id}>
+    <li className={styles.ImageGalleryItem} key={id} onClick={onClick}>
       <img
         className={styles.ImageGalleryItem_image}
         src={src}

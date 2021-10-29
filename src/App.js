@@ -9,6 +9,7 @@ import Loader from 'react-loader-spinner';
 import searchApi from './services/api';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import Button from './components/Button/Button';
+import { Modal } from './components/Modal/Modal';
 
 // fetch(`https://pixabay.com/api/?q=sun&page=1&key=23204413-d213403835507960634485f04&image_type=photo&orientation=horizontal&per_page=12`)
 //                  .then(res =>      console.log(res.json()))
@@ -24,6 +25,7 @@ class App extends React.Component {
     error: null,
     status: 'idle',
     searchPage: 1,
+    showModal: true,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -67,14 +69,26 @@ class App extends React.Component {
       })
       .catch(error => this.setState({ error, status: 'rejected' }));
   };
+  onCloseModal = () => {
+    this.setState({ showModal: false });
+  };
 
+  onOpenModal = () => {
+    this.setState({ showModal: true });
+  };
+
+  onImgClick = () => {};
   render() {
-    const { searchInfo, error, status } = this.state;
+    const { searchInfo, error, status, showModal } = this.state;
 
     return (
       <div className={styles.App}>
         <Searchbar onSubmit={this.handleFormSubmit} />
-
+        {showModal && (
+          <Modal onCloseModal={this.onCloseModal}>
+            <img src="" alt="" />
+          </Modal>
+        )}
         {/* <ImageGalleryItem searchName={ this.state.searchName}/> */}
         <ToastContainer position="top-center" autoClose={2000} />
         {status === 'idle' && <div>Enter a search name</div>}
@@ -91,7 +105,7 @@ class App extends React.Component {
         {status === 'resolved' && (
           <>
             {/* <p>{searchInfo.total}</p> */}
-            <ImageGallery images={searchInfo} />
+            <ImageGallery images={searchInfo} onClick={this.onOpenModal} />
             <Button onClick={this.handleClick} />
           </>
         )}
