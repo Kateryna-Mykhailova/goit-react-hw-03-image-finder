@@ -9,7 +9,7 @@ const ImageGalleryItem = ({ id, src, largeImg, onClick, onImgClick }) => {
         className={styles.ImageGalleryItem_image}
         src={src}
         alt=""
-        data-img={largeImg}
+        data-url={largeImg}
       />
     </li>
   );
