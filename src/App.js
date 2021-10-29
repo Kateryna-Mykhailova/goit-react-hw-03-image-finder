@@ -45,7 +45,7 @@ class App extends React.Component {
 
   handleClick = () => {
     this.fetchFunction();
-    console.log(this.state.searchInfo.length);
+    // console.log(this.state.searchInfo.length);
   };
 
   fetchFunction = () => {
