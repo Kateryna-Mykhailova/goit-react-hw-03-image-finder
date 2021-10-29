@@ -89,7 +89,7 @@ class App extends React.Component {
           </Modal>
         )}
         <ToastContainer position="top-center" autoClose={2000} />
-        {status === 'idle' && <div>Enter a search name</div>}
+        {status === 'idle' && <div>Enter something</div>}
         {status === 'pending' && (
           <Loader
             type="BallTriangle"
