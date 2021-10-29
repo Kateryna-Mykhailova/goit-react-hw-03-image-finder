@@ -25,7 +25,8 @@ class App extends React.Component {
     error: null,
     status: 'idle',
     searchPage: 1,
-    showModal: true,
+    showModal: false,
+    largeImgUrl: '',
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -77,16 +78,21 @@ class App extends React.Component {
     this.setState({ showModal: true });
   };
 
-  onImgClick = () => {};
+  onImgClick = e => {
+    if (e.target.nodeName !== 'IMG') {
+      return;
+    }
+    this.setState({ largeImgUrl: e.target.dataset.img });
+  };
   render() {
-    const { searchInfo, error, status, showModal } = this.state;
+    const { searchInfo, error, status, showModal, largeImgUrl } = this.state;
 
     return (
       <div className={styles.App}>
         <Searchbar onSubmit={this.handleFormSubmit} />
         {showModal && (
           <Modal onCloseModal={this.onCloseModal}>
-            <img src="" alt="" />
+            <img src={largeImgUrl} alt="" />
           </Modal>
         )}
         {/* <ImageGalleryItem searchName={ this.state.searchName}/> */}
@@ -105,7 +111,11 @@ class App extends React.Component {
         {status === 'resolved' && (
           <>
             {/* <p>{searchInfo.total}</p> */}
-            <ImageGallery images={searchInfo} onClick={this.onOpenModal} />
+            <ImageGallery
+              images={searchInfo}
+              onClick={this.onOpenModal}
+              onImgClick={this.onImgClick}
+            />
             <Button onClick={this.handleClick} />
           </>
         )}

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../ImageGallery/ImageGallery.module.css';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
-const ImageGallery = ({ images, onClick }) => {
+const ImageGallery = ({ images, onClick, onImgClick }) => {
   return (
     <>
       <ul className={styles.ImageGallery}>
@@ -12,6 +12,7 @@ const ImageGallery = ({ images, onClick }) => {
             // <div><p>{image.id} </p>
             <ImageGalleryItem
               onClick={onClick}
+              onImgClick={onImgClick}
               key={image.id}
               src={image.webformatURL}
               largeImg={image.largeImageURL}
