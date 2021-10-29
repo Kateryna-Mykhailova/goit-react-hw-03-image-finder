@@ -4,7 +4,7 @@ import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
 const ImageGallery = ({ images, onClick, onImgClick }) => {
   return (
-    <>
+    <div className={styles.ImageGallery_container}>
       <ul className={styles.ImageGallery}>
         {/* <li>jhgf</li> */}
         {images.map(image => {
@@ -22,7 +22,7 @@ const ImageGallery = ({ images, onClick, onImgClick }) => {
         })}
       </ul>
       {/* <button type="button" onClick={onClick}>Load more</button> */}
-    </>
+    </div>
   );
 };
 

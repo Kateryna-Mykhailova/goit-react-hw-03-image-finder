@@ -16,11 +16,3 @@ const ImageGalleryItem = ({ id, src, largeImg, onClick, onImgClick }) => {
 };
 
 export default ImageGalleryItem;
-
-// const ImageGalleryItem = () => {
-
-// return (<p>fgh</p>)
-
-// }
-
-// export default ImageGalleryItem;

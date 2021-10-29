@@ -10,7 +10,6 @@ export default class Searchbar extends Component {
   };
 
   handleChange = e => {
-    // const { name, value } = e.target;
     this.setState({
       searchName: e.currentTarget.value.toLowerCase(),
     });
@@ -26,17 +25,7 @@ export default class Searchbar extends Component {
     }
     this.props.onSubmit(this.state.searchName);
     this.resetForm();
-
-    // const newContact = {
-    //   name,
-    //   number,
-    //   id: uuid(),
   };
-
-  //     this.props.addNewContact(newContact);
-
-  //
-  //   };
 
   resetForm = () => {
     this.setState({ searchName: '' });
@@ -62,22 +51,6 @@ export default class Searchbar extends Component {
           />
         </form>
       </header>
-      //   <form >
-      //     <label >
-      //       Name
-      //     </label>
-      //     <input
-
-      //       type="text"
-
-      //     />
-      //     <button  type="submit">
-      //             <AiOutlineSearch />
-      //             Add
-
-      //         </button>
-
-      //   </form>
     );
   }
 }
